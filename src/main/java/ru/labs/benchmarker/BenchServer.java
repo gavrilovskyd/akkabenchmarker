@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
 
@@ -16,7 +17,7 @@ public class BenchServer {
         this.cache = system.actorOf(Props.create(CacheActor.class), "cache");
     }
 
-    public Flow<HttpRequest, HttpResponse, NotUsed> flow() {
-        
+    public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer, ) {
+
     }
 }
