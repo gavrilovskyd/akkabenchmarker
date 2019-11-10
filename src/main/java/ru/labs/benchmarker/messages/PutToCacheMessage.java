@@ -9,4 +9,8 @@ public class PutToCacheMessage {
         this.responseTime = responseTime;
     }
 
+
+    public String getURL() {
+        return url;
+    }
 }
