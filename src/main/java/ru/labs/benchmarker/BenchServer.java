@@ -11,6 +11,9 @@ import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
 
 public class BenchServer {
+    private static final URL_PARAMETER_NAME = "url";
+
+
     private ActorRef cache;
 
     public BenchServer(ActorSystem system) {
@@ -20,7 +23,7 @@ public class BenchServer {
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class)
                 .map(req -> {
-                    
+                    String urlParam = req.getUri().query().get()
                 });
     }
 }
