@@ -42,7 +42,9 @@ public class BenchServer {
                     Patterns.ask(cache, benchRequest, TIMEOUT)
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
-                                
+                                if (cacheResp.getResponseTime() != -1) {
+                                    
+                                }
                             });
 
 
