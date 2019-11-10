@@ -72,7 +72,7 @@ public class BenchServer {
         return Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest ->
-                    Collections.nCopies(benchRequest.getCount(), benchRequest.getURL());
+                    Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
     }
 }
