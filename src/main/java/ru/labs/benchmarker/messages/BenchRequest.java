@@ -12,4 +12,8 @@ public class BenchRequest {
     public String getURL() {
         return url;
     }
+
+    public Integer getCount() {
+        return count;
+    }
 }
