@@ -13,7 +13,7 @@ public class CacheActor extends AbstractActor {
     private LinkedHashMap<String, Long> lruCache;
 
     public CacheActor(int cacheSize) {
-        this.lruCache = new LinkedHashMap<String, Long>(cacheSize, 0.75f, true);
+        this.lruCache = new LinkedHashMap<>(cacheSize, 0.75f, true);
     }
 
     @Override
