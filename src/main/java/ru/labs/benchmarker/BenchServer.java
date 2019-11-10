@@ -56,7 +56,7 @@ public class BenchServer {
                                 httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                         );
                     } catch (NumberFormatException ex) {
-                        countParam = COUNT_DEFAULT_VALUE;
+                        countParam = Integer.parseInt(COUNT_DEFAULT_VALUE);
                     }
 
                     return new BenchRequest(urlParam, countParam);
