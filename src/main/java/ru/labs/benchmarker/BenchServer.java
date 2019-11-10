@@ -45,11 +45,11 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
-                                    System.out.println("not cached");
+                                    System.out.println("cached");
                                     return CompletableFuture.completedFuture(cacheResp);
                                 }
 
-                                System.out.println("cached");
+                                System.out.println("not cached");
                                 //TODO: add create flow logic
                                 return CompletableFuture.completedFuture(
                                         new BenchResult(cacheResp.getURL(), 0L));
