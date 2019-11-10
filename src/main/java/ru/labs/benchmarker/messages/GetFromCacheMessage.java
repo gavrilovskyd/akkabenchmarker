@@ -7,7 +7,7 @@ public class GetFromCacheMessage {
         this.url = url;
     }
 
-    public String getUrl() {
+    public String getURL() {
         return url;
     }
 }
