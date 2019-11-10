@@ -39,7 +39,7 @@ public class BenchServer {
     private ActorRef cache;
 
     public BenchServer(ActorSystem system) {
-        this.cache = system.actorOf(Props.create(CacheActor.class, ), "cache");
+        this.cache = system.actorOf(Props.create(CacheActor.class, CACHE_SIZE), "cache");
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
