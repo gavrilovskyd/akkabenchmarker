@@ -64,7 +64,8 @@ public class BenchServer {
                                                     CompletableFuture.completedFuture(summaryTime / benchRequest.getCount()));
                                 })
                 )
-                .map(benchResult -> {
+                .map(avgResponseTime -> {
+                    
 
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
