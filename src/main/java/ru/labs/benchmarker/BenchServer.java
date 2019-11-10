@@ -33,7 +33,7 @@ public class BenchServer {
                     return new Pair<>(urlParam, countParam);
                 })
                 .mapAsync(params -> {
-                    if (params.) {
+                    if (params.first()) {
 
                     }
                 });
