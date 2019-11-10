@@ -11,6 +11,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
+import ru.labs.benchmarker.messages.BenchResult;
 
 import java.time.Duration;
 import java.util.concurrent.CompletionStage;
@@ -39,8 +40,8 @@ public class BenchServer {
                 })
                 .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
                     Patterns.ask(cache, benchRequest, TIMEOUT)
-                            .thenCompose(cacheResp -> {
-
+                            .thenCompose(resp -> {
+                                BenchResult
                             });
 
 
