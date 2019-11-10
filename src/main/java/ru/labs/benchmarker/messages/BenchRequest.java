@@ -4,7 +4,7 @@ public class BenchRequest {
     private String url;
     private Integer count;
 
-    public BenchRequest(String url) {
+    public BenchRequest(String url, Integer count) {
         this.url = url;
     }
 
