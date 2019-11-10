@@ -26,9 +26,9 @@ public class BenchServer {
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class)
                 .map(httpRequest -> {
-                    String urlParam = req.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
+                    String urlParam = httpRequest.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
                     int countParam = Integer.parseInt(
-                            req.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
+                            httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
                     return new BenchRequest(urlParam, countParam);
