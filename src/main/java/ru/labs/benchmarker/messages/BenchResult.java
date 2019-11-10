@@ -5,16 +5,12 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BenchResult {
-    private static final Long TIME_FACTOR = 1000000L; // NANO to MS
-
     private String url;
     private Long responseTime;
 
     public BenchResult(String url, Long responseTime) {
         this.url = url;
-        System.out.println(responseTime);
-        System.out.println(responseTime / TIME_FACTOR);
-        this.responseTime = responseTime / TIME_FACTOR;
+        this.responseTime = responseTime;
     }
 
     public String getURL() {
