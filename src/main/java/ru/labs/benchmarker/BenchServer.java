@@ -49,16 +49,16 @@ public class BenchServer {
                     return new BenchRequest(urlParam, countParam);
                 })
                 .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
-                    Patterns.ask(cache, benchRequest, TIMEOUT)
-                            .thenCompose(resp -> {
-                                BenchResult cacheResp = ((BenchResult) resp);
-                                if (cacheResp.getResponseTime() != -1) {
-                                    return CompletableFuture.completedFuture(cacheResp.getResponseTime());
-                                }
+                        Patterns.ask(cache, benchRequest, TIMEOUT)
+                                .thenCompose(resp -> {
+                                    BenchResult cacheResp = ((BenchResult) resp);
+                                    if (cacheResp.getResponseTime() != -1) {
+                                        return CompletableFuture.completedFuture(cacheResp.getResponseTime());
+                                    }
 
-                                //TODO: add create flow logic
-                                return CompletableFuture.completedFuture(0L);
-                            })
+                                    //TODO: add create flow logic
+                                    return CompletableFuture.completedFuture(0L);
+                                })
                 )
                 .map(benchResult -> {
                     cache.tell(benchResult, ActorRef.noSender());
@@ -74,21 +74,21 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
-         Flow<BenchRequest, Long, NotUsed> timeTestFlow =
-                 Flow
-                .<BenchRequest>create()
-                .mapConcat(benchRequest ->
-                    Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
-                )
-                .mapAsync(1, url -> {
-                    long start = System.nanoTime();
-                    return httpClient
-                            .prepareGet(url)
-                            .execute()
-                            .toCompletableFuture()
-                            .thenCompose(response ->
-                                    CompletableFuture.completedFuture(System.nanoTime() - start));
-                });
+        Flow<BenchRequest, Long, NotUsed> timeTestFlow =
+                Flow
+                        .<BenchRequest>create()
+                        .mapConcat(benchRequest ->
+                                Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
+                        )
+                        .mapAsync(1, url -> {
+                            long start = System.nanoTime();
+                            return httpClient
+                                    .prepareGet(url)
+                                    .execute()
+                                    .toCompletableFuture()
+                                    .thenCompose(response ->
+                                            CompletableFuture.completedFuture(System.nanoTime() - start));
+                        });
 
     }
 }
