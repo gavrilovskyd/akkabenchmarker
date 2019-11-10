@@ -68,9 +68,7 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
                 })
-                .recover(
-                        new PFBuilder<NumberFormatException, HttpResponse>()
-                );
+                .recover(ex -> {});
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
