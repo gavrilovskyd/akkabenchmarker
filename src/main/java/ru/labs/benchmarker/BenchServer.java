@@ -53,7 +53,7 @@ public class BenchServer {
                                         new BenchResult(cacheResp.getURL(), 0L));
                             })
                 )
-                .map(result -> {
+                .map(benchResult -> {
                     cache.tell(result, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
