@@ -98,4 +98,15 @@ public class BenchServer {
         Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0L, Long::sum);
         return timeTestFlow.toMat(sumFold, Keep.right());
     }
+
+    private HttpResponse httpBenchResponse(BenchResult res) {
+        return HttpResponse.create()
+                .withStatus(StatusCodes.OK)
+                .withEntity(
+                        HttpEntities.create(
+                                ContentTypes.APPLICATION_JSON,
+                                jsonMapper.writeValueAsBytes(benchResult)
+                        )
+                );
+    }
 }
