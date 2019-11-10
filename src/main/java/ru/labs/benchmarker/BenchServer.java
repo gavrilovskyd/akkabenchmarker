@@ -16,6 +16,7 @@ public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final String COUNT_DEFAULT_VALUE = "10";
+    private static final int TIMEOUT_MS = 5000;
 
     private ActorRef cache;
 
@@ -34,7 +35,7 @@ public class BenchServer {
                     return new BenchRequest(urlParam, countParam);
                 })
                 .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
-                    Patterns.ask(cache, new BenchRequest())
+                    Patterns.ask(cache, benchRequest, )
                 });
     }
 }
