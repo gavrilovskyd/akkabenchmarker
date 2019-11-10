@@ -31,6 +31,7 @@ public class BenchServer {
     private static final String COUNT_DEFAULT_VALUE = "10";
     private static final Long TIME_FACTOR = 1000000L; // nano to ms
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
+    private static final int CACHE_SIZE = 5;
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
     private final AsyncHttpClient httpClient = Dsl.asyncHttpClient();
@@ -38,7 +39,7 @@ public class BenchServer {
     private ActorRef cache;
 
     public BenchServer(ActorSystem system) {
-        this.cache = system.actorOf(Props.create(CacheActor.class), "cache");
+        this.cache = system.actorOf(Props.create(CacheActor.class, ), "cache");
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
