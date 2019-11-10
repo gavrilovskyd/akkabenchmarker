@@ -69,6 +69,8 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
-        return Flow
+        return Flow<BenchRequest, BenchResult, NotUsed>
+                .create()
+                .mapConcat()
     }
 }
