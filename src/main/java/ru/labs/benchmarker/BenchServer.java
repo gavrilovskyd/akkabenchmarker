@@ -49,7 +49,7 @@ public class BenchServer {
                                 }
 
                                 //TODO: add create flow logic
-                                return CompletableFuture.completedFuture(0L);
+                                return CompletableFuture.completedFuture(new BenchResult(cacheResp.getURL(), 0L));
                             })
                 )
                 .map(result -> {
