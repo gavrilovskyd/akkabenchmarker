@@ -23,7 +23,8 @@ public class BenchServer {
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class)
                 .map(req -> {
-                    String urlParam = req.getUri().query().get(URL_PARAMETER_NAME);
+                    String urlParam = req.getUri().query().get(URL_PARAMETER_NAME).get();
+
                 });
     }
 }
