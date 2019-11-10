@@ -72,7 +72,7 @@ public class BenchServer {
         return Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest -> {
-                    
+
                 })
     }
 }
