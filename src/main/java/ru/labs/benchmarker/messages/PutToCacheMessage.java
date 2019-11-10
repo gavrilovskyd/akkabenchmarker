@@ -6,6 +6,7 @@ public class PutToCacheMessage {
 
     public PutToCacheMessage(String url, Long responseTime) {
         this.url = url;
+        this.responseTime = responseTime;
     }
 
 }
