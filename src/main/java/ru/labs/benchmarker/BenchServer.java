@@ -8,6 +8,7 @@ import akka.http.javadsl.model.*;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Sink;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
@@ -66,5 +67,5 @@ public class BenchServer {
                 });
     }
 
-    private 
+    private Sink<>
 }
