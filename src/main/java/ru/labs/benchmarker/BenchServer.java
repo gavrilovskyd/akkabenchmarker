@@ -71,8 +71,8 @@ public class BenchServer {
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
         return Flow
                 .<BenchRequest>create()
-                .mapConcat(benchRequest -> {
+                .mapConcat(benchRequest ->
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL());
-                })
+                )
     }
 }
