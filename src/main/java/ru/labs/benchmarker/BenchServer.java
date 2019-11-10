@@ -54,15 +54,13 @@ public class BenchServer {
                             })
                 )
                 .map(result -> {
-                    BenchResult benchResult = ((BenchResult) result);
-
-                    cache.tell(benchResult, ActorRef.noSender());
+                    cache.tell(result, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
                             .withEntity(
                                     HttpEntities.create(
                                             ContentTypes.APPLICATION_JSON,
-                                            jsonMapper.writeValueAsBytes(benchResult)
+                                            jsonMapper.writeValueAsBytes(((BenchResult) result))
                                     )
                             );
                 });
