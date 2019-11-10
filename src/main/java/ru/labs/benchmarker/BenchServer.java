@@ -4,7 +4,6 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.http.javadsl.Http;
 import akka.http.javadsl.model.*;
 import akka.japi.pf.PFBuilder;
 import akka.pattern.Patterns;
@@ -20,7 +19,6 @@ import org.asynchttpclient.Dsl;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
-import ru.labs.benchmarker.messages.TextResponse;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -49,15 +47,9 @@ public class BenchServer {
         return Flow.of(HttpRequest.class)
                 .map(httpRequest -> {
                     String urlParam = httpRequest.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
-
-                    int countParam;
-                    try {
-                        countParam = Integer.parseInt(
-                                httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
-                        );
-                    } catch (NumberFormatException ex) {
-                        countParam = Integer.parseInt(COUNT_DEFAULT_VALUE);
-                    }
+                    int countParam = Integer.parseInt(
+                            httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
+                    );
 
                     return new BenchRequest(urlParam, countParam);
                 })
@@ -105,17 +97,6 @@ public class BenchServer {
                 });
         Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0L, Long::sum);
         return timeTestFlow.toMat(sumFold, Keep.right());
-    }
-
-    private HttpResponse httpErrorResponse(StatusCode code, String msg) throws JsonProcessingException {
-        return HttpResponse.create()
-                .withStatus(code)
-                .withEntity(
-                        HttpEntities.create(
-                                ContentTypes.APPLICATION_JSON,
-                                jsonMapper.writeValueAsBytes(new TextResponse(msg))
-                        )
-                );
     }
 
     private HttpResponse httpBenchResponse(BenchResult res) throws JsonProcessingException {
