@@ -10,6 +10,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Sink;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Dsl;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
@@ -28,6 +29,7 @@ public class BenchServer {
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
+    private final AsyncHttpClient httpClient = new Dsl.
 
     private ActorRef cache;
 
