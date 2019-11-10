@@ -12,6 +12,7 @@ import ru.labs.benchmarker.actors.CacheActor;
 
 public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
+    private static final String COUNT_PARAMETER_NAME = "count";
 
 
     private ActorRef cache;
@@ -24,6 +25,7 @@ public class BenchServer {
         return Flow.of(HttpRequest.class)
                 .map(req -> {
                     String urlParam = req.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
+                    req.getUri().query().getOrElse()
 
                 });
     }
