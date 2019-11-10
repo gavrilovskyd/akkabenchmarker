@@ -16,6 +16,7 @@ import ru.labs.benchmarker.messages.BenchResult;
 
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
@@ -67,5 +68,5 @@ public class BenchServer {
                 });
     }
 
-    private Sink<BenchRequest, CompletionStage<BenchResult>>
+    private Sink<BenchRequest, CompletionStage<BenchResult>> 
 }
