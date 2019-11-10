@@ -25,7 +25,7 @@ public class BenchServer {
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final String COUNT_DEFAULT_VALUE = "10";
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper jsonMapper = new ObjectMapper();
 
     private ActorRef cache;
 
