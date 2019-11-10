@@ -15,6 +15,6 @@ public class BenchmarkerApp {
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         BenchServer server = new BenchServer(system);
-        final Flow<HttpRequest, HttpResponse, NotUsed>
+        final Flow<HttpRequest, HttpResponse, NotUsed> httpFlow = server.flow(system, materializer);
     }
 }
