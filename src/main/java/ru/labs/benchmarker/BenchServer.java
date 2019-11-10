@@ -32,10 +32,6 @@ public class BenchServer {
 
                     return new Pair<>(urlParam, countParam);
                 })
-                .mapAsync(params -> {
-                    if (params.first()) {
-
-                    }
-                });
+                .mapAsync();
     }
 }
