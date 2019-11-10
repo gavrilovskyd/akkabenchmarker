@@ -15,6 +15,7 @@ import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
 
 import java.time.Duration;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
 public class BenchServer {
@@ -44,7 +45,7 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
-                                    return Compl
+                                    return CompletableFuture<Long>
                                 }
                             });
 
