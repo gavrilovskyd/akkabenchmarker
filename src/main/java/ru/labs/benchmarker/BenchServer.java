@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.japi.Pair;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
@@ -30,7 +31,7 @@ public class BenchServer {
                             req.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
-                    return new Pair<String, Integer>("", 0);
+                    return new Pair<String, Integer>(urlParam, countParam);
                 })
                 .mapAsync();
     }
