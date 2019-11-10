@@ -10,6 +10,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Sink;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.tools.corba.se.idl.constExpr.Not;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Dsl;
 import ru.labs.benchmarker.actors.CacheActor;
@@ -73,7 +74,7 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
-         Flow
+         Flow<BenchRequest, Long, NotUsed>   Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest ->
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
