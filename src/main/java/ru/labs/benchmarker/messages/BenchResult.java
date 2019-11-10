@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class BenchResult {
-    private static final long TIME_FACTOR = 1000000L; // NANO to MS
+    private static final Long TIME_FACTOR = 1000000L; // NANO to MS
 
     private String url;
     private Long responseTime;
