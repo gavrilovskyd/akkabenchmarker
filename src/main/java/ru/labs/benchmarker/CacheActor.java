@@ -1,6 +1,7 @@
 package ru.labs.benchmarker;
 
 import akka.actor.AbstractActor;
+import akka.japi.pf.ReceiveBuilder;
 
 import java.util.HashMap;
 
@@ -9,6 +10,7 @@ public class CacheActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        
+        return ReceiveBuilder.create()
+                .build();
     }
 }
