@@ -16,7 +16,6 @@ public class BenchServer {
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final String COUNT_DEFAULT_VALUE = "10";
 
-
     private ActorRef cache;
 
     public BenchServer(ActorSystem system) {
