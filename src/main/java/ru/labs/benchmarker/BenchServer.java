@@ -33,8 +33,6 @@ public class BenchServer {
 
                     return new Pair(urlParam, countParam);
                 })
-                .mapAsync(
-                        
-                );
+                .mapAsync();
     }
 }
