@@ -11,7 +11,6 @@ import java.util.LinkedHashMap;
 public class CacheActor extends AbstractActor {
     private HashMap<String, Long> innerStorage = new HashMap<>();
     private LinkedHashMap<String, Long> lruCache;
-    private int cacheSize;
 
     public CacheActor(int cacheSize) {
         this.cacheSize = cacheSize;
