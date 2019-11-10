@@ -92,7 +92,7 @@ public class BenchServer {
         return timeTestFlow.toMat(sumFold, Keep.right());
     }
 
-    private HttpResponse httpBenchResponse(BenchResult res) {
+    private HttpResponse httpBenchResponse(BenchResult res) throws  {
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
                 .withEntity(
