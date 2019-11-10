@@ -52,7 +52,7 @@ public class BenchServer {
 
                     int countParam;
                     try {
-                        int countParam = Integer.parseInt(
+                        countParam = Integer.parseInt(
                                 httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                         );
                     } catch (NumberFormatException ex) {
