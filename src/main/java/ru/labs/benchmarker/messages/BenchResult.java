@@ -12,6 +12,8 @@ public class BenchResult {
 
     public BenchResult(String url, Long responseTime) {
         this.url = url;
+        System.out.println(responseTime);
+        System.out.println(responseTime / TIME_FACTOR);
         this.responseTime = responseTime / TIME_FACTOR;
     }
 
