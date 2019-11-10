@@ -45,6 +45,7 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
+                                    System.out.println("not cached");
                                     return CompletableFuture.completedFuture(cacheResp);
                                 }
 
