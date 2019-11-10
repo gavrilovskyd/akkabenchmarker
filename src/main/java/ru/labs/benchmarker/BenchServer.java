@@ -15,6 +15,7 @@ import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
@@ -71,7 +72,7 @@ public class BenchServer {
         return Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest -> {
-                    
+                    Collections.nCopies(benchRequest.getCount(), benchRequest.getURL());
                 })
     }
 }
