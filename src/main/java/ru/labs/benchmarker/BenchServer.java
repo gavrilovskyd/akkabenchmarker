@@ -75,6 +75,17 @@ public class BenchServer {
                 });
     }
 
+    private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest) {
+        return Source.from(Collections.singletonList(benchRequest))
+                .toMat(benchSink(), Keep.right())
+                .run(materializer)
+                .thenCompose(summaryTime -> CompletableFuture.completedFuture(
+                        new BenchResult(
+                                benchRequest.getURL(),
+                                summaryTime / benchRequest.getCount() / TIME_FACTOR
+                        )));
+    }
+
     private Sink<BenchRequest, CompletionStage<Long>> benchSink() {
         Flow<BenchRequest, Long, NotUsed> timeTestFlow = Flow.<BenchRequest>create()
                 .mapConcat(benchRequest ->
