@@ -2,7 +2,7 @@ package ru.labs.benchmarker.actors;
 
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
-import ru.labs.benchmarker.messages.GetFromCacheMessage;
+import ru.labs.benchmarker.messages.BenchRequest;
 
 import java.util.HashMap;
 
@@ -12,8 +12,8 @@ public class CacheActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetFromCacheMessage.class, m -> {
-                    
+                .match(BenchRequest.class, m -> {
+
                 })
                 .build();
     }

@@ -1,9 +1,10 @@
 package ru.labs.benchmarker.messages;
 
-public class GetFromCacheMessage {
+public class BenchRequest {
     private String url;
+    private Integer count;
 
-    public GetFromCacheMessage(String url) {
+    public BenchRequest(String url) {
         this.url = url;
     }
 

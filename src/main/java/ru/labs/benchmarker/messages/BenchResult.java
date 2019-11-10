@@ -1,10 +1,10 @@
 package ru.labs.benchmarker.messages;
 
-public class PutToCacheMessage {
+public class BenchResult {
     private String url;
     private Long responseTime;
 
-    public PutToCacheMessage(String url, Long responseTime) {
+    public BenchResult(String url, Long responseTime) {
         this.url = url;
         this.responseTime = responseTime;
     }
