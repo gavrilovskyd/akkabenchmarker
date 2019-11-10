@@ -12,7 +12,7 @@ public class BenchResult {
 
     public BenchResult(String url, Long responseTime) {
         this.url = url;
-        this.responseTime = responseTime;
+        this.responseTime = responseTime / TIME_FACTOR;
     }
 
     public String getURL() {
