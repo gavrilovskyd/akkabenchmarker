@@ -84,7 +84,7 @@ public class BenchServer {
                             .prepareGet(url)
                             .execute()
                             .toCompletableFuture()
-                            .thenCompose(response -> CompletableFuture.completedFuture(0L));
+                            .thenCompose(response -> CompletableFuture.completedFuture(System.nanoTime() - start));
                 })
     }
 }
