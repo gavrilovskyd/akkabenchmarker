@@ -10,6 +10,7 @@ import akka.http.javadsl.model.StatusCodes;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.xml.internal.ws.util.CompletedFuture;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
@@ -24,6 +25,7 @@ public class BenchServer {
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final String COUNT_DEFAULT_VALUE = "10";
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
+    ObjectMapper mapper = new ObjectMapper();
 
     private ActorRef cache;
 
@@ -59,6 +61,7 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
+
                 });
     }
 }
