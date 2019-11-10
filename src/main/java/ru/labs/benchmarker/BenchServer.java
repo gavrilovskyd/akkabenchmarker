@@ -8,6 +8,7 @@ import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import javafx.util.Pair;
 import ru.labs.benchmarker.actors.CacheActor;
 
 public class BenchServer {
