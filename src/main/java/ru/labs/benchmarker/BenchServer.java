@@ -26,7 +26,7 @@ public class BenchServer {
         return Flow.of(HttpRequest.class)
                 .map(req -> {
                     String urlParam = req.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
-                    Integer countParam = Integer.parseInt(
+                    int countParam = Integer.parseInt(
                             req.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
