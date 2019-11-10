@@ -59,7 +59,9 @@ public class BenchServer {
 
                                     return Source.from(Collections.singletonList(benchRequest))
                                             .toMat(benchSink(), Keep.right())
-                                            .run(materializer);
+                                            .run(materializer)
+                                            .thenCompose(summaryTime ->
+                                                    CompletableFuture.completedFuture(cacheResp.getResponseTime()););
                                 })
                 )
                 .map(benchResult -> {
