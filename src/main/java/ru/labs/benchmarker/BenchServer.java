@@ -75,7 +75,7 @@ public class BenchServer {
                 });
     }
 
-    private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest) {
+    private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
         return Source.from(Collections.singletonList(benchRequest))
                 .toMat(benchSink(), Keep.right())
                 .run(materializer)
