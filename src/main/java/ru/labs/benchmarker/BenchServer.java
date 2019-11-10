@@ -53,7 +53,7 @@ public class BenchServer {
                             })
                 )
                 .map(result -> {
-                    
+                    BenchResult benchResult = ((BenchResult) result);
                 });
     }
 }
