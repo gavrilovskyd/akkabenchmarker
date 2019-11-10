@@ -73,7 +73,7 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
-        return Flow
+         Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest ->
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
@@ -87,6 +87,6 @@ public class BenchServer {
                             .thenCompose(response ->
                                     CompletableFuture.completedFuture(System.nanoTime() - start));
                 })
-                .
+                
     }
 }
