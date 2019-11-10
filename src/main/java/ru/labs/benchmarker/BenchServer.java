@@ -6,6 +6,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.model.StatusCodes;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -54,8 +55,10 @@ public class BenchServer {
                 )
                 .map(result -> {
                     BenchResult benchResult = ((BenchResult) result);
-                    
+
                     cache.tell(benchResult, ActorRef.noSender());
+                    return HttpResponse.create()
+                            .withStatus(StatusCodes.OK)
                 });
     }
 }
