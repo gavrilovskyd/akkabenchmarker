@@ -55,7 +55,7 @@ public class BenchServer {
                                     BenchResult cacheResp = ((BenchResult) resp);
                                     if (cacheResp.getResponseTime() != -1) {
                                         return CompletableFuture.completedFuture(
-                                                new BenchResult(benchRequest.getURL(), cacheResp.getResponseTime())
+                                                new BenchResult(cacheResp)
                                         );
                                     }
 
