@@ -22,5 +22,7 @@ public class BenchmarkerApp {
         final Flow<HttpRequest, HttpResponse, NotUsed> httpFlow = server.flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 httpFlow, ConnectHttp.toHost("localhost", 8080), materializer);
+
+        System.out.println("Server started at http://localhost:8080/");
     }
 }
