@@ -54,9 +54,7 @@ public class BenchServer {
                                 .thenCompose(resp -> {
                                     BenchResult cacheResp = ((BenchResult) resp);
                                     if (cacheResp.getResponseTime() != -1) {
-                                        return CompletableFuture.completedFuture(
-                                                new BenchResult(cacheResp)
-                                        );
+                                        return CompletableFuture.completedFuture(cacheResp);
                                     }
 
                                     return Source.from(Collections.singletonList(benchRequest))
