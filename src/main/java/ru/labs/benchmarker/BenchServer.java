@@ -68,7 +68,7 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
                 })
-                .recover(new PFBuilder().build());
+                .recover(new PFBuilder<Throwable, HttpResponse>().build());
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
