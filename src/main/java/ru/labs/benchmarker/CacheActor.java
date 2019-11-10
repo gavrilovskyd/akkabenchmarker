@@ -1,4 +1,9 @@
 package ru.labs.benchmarker;
 
-public class CacheActor extends {
+import akka.actor.AbstractActor;
+
+import java.util.HashMap;
+
+public class CacheActor extends AbstractActor {
+    private HashMap<>
 }
