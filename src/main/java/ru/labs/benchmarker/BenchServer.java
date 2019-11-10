@@ -32,8 +32,8 @@ public class BenchServer {
 
                     return new Pair<>(urlParam, countParam);
                 })
-                .mapAsync(1, params -> {
-                    
+                .mapAsync(1, params -> { //TODO: check parallelism parameter
+
                 });
     }
 }
