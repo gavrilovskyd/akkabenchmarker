@@ -55,7 +55,7 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .recover(new PFBuilder<Throwable, HttpResponse>()
+                .recover(new PFBuilder<Throwable, BenchRequest>()
                         .match(NumberFormatException.class,
                                 ex -> httpErrorResponse(StatusCodes.BAD_REQUEST, ex.getMessage()))
                         .build())
