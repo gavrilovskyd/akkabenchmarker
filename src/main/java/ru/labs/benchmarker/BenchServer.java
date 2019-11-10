@@ -69,11 +69,11 @@ public class BenchServer {
                 .map(benchResult -> {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
-                });
-                //.recover(new PFBuilder<Throwable, HttpResponse>()
-                //        .match(NumberFormatException.class,
-                //                ex -> httpErrorResponse(StatusCodes.BAD_REQUEST, ex.getMessage()))
-                //        .build());
+                })
+                .recover(new PFBuilder<Throwable, HttpResponse>()
+                        .match(NumberFormatException.class,
+                                ex -> httpErrorResponse(StatusCodes.BAD_REQUEST, ex.getMessage()))
+                        .build());
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
