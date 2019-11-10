@@ -61,7 +61,9 @@ public class BenchServer {
                                             .toMat(benchSink(), Keep.right())
                                             .run(materializer)
                                             .thenCompose(summaryTime -> CompletableFuture.completedFuture(
-                                                    new BenchResult(benchRequest.getURL(), summaryTime / benchRequest.getCount())));
+                                                    new BenchResult(
+                                                            benchRequest.getURL(),
+                                                            summaryTime / benchRequest.getCount())));
                                 })
                 )
                 .map(avgResponseTime -> {
