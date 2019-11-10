@@ -11,6 +11,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Dsl;
@@ -92,7 +93,7 @@ public class BenchServer {
         return timeTestFlow.toMat(sumFold, Keep.right());
     }
 
-    private HttpResponse httpBenchResponse(BenchResult res) throws  {
+    private HttpResponse httpBenchResponse(BenchResult res) throws JsonProcessingException {
         return HttpResponse.create()
                 .withStatus(StatusCodes.OK)
                 .withEntity(
