@@ -49,6 +49,7 @@ public class BenchServer {
                                     return CompletableFuture.completedFuture(cacheResp);
                                 }
 
+                                System.out.println("cached");
                                 //TODO: add create flow logic
                                 return CompletableFuture.completedFuture(
                                         new BenchResult(cacheResp.getURL(), 0L));
