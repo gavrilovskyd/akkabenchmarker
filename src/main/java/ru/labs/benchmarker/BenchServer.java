@@ -31,7 +31,7 @@ public class BenchServer {
                             req.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
-                    return new Pair<String, Integer>(urlParam, countParam);
+                    return new Pair<>(urlParam, countParam);
                 })
                 .mapAsync();
     }
