@@ -5,5 +5,5 @@ import akka.actor.AbstractActor;
 import java.util.HashMap;
 
 public class CacheActor extends AbstractActor {
-    private HashMap<String, Long>
+    private HashMap<String, Long> innerStorage = new HashMap<>();
 }
