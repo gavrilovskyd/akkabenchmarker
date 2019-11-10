@@ -57,7 +57,7 @@ public class BenchServer {
                                     if (cacheResp.getResponseTime() != -1) {
                                         return CompletableFuture.completedFuture(cacheResp.getResponseTime());
                                     }
-                                    
+
                                     return Source.from(Collections.singletonList(benchRequest))
                                             .toMat(benchSink(), Keep.right())
                                             .run(materializer);
@@ -78,8 +78,7 @@ public class BenchServer {
 
     private Sink<BenchRequest, CompletionStage<Long>> benchSink() {
         Flow<BenchRequest, Long, NotUsed> timeTestFlow =
-                Flow
-                        .<BenchRequest>create()
+                Flow.<BenchRequest>create()
                         .mapConcat(benchRequest ->
                                 Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                         )
