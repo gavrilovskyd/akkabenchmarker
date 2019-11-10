@@ -6,10 +6,11 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
-import akka.japi.Pair;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
+import ru.labs.benchmarker.messages.BenchRequest;
 
 public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
@@ -30,10 +31,10 @@ public class BenchServer {
                             req.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
-                    return new Pair<>(urlParam, countParam);
+                    return new BenchRequest(urlParam, countParam);
                 })
                 .mapAsync(1, params -> { //TODO: check parallelism parameter
-
+                    Patterns.ask(cache, new BenchRequest())
                 });
     }
 }
