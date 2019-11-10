@@ -10,7 +10,7 @@ public class BenchmarkerApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-
+        BenchServer server = new BenchServer(system);
 
     }
 }
