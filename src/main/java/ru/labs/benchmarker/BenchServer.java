@@ -66,7 +66,8 @@ public class BenchServer {
                 .map(benchResult -> {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
-                });
+                })
+                .recover();
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
