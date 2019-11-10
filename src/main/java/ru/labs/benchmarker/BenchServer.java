@@ -19,6 +19,8 @@ import java.util.Collections;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 
+import org.asynchttpclient.*;
+
 public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
@@ -75,7 +77,7 @@ public class BenchServer {
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
                 .mapAsync(1, url -> {
-                    
+
                 })
     }
 }
