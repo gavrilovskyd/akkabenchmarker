@@ -10,6 +10,10 @@ import java.util.HashMap;
 public class CacheActor extends AbstractActor {
     private HashMap<String, Long> innerStorage = new HashMap<>();
 
+    public CacheActor(Long cacheSize) {
+        
+    }
+
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
