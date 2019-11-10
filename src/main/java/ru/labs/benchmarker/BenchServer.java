@@ -77,20 +77,20 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<Long>> benchSink() {
-        Flow<BenchRequest, Long, NotUsed> timeTestFlow =
-                Flow.<BenchRequest>create()
-                        .mapConcat(benchRequest ->
-                                Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
-                        )
-                        .mapAsync(1, url -> {
-                            long start = System.nanoTime();
-                            return httpClient
-                                    .prepareGet(url)
-                                    .execute()
-                                    .toCompletableFuture()
-                                    .thenCompose(response ->
-                                            CompletableFuture.completedFuture(System.nanoTime() - start));
-                        });
+        Flow<BenchRequest, Long, NotUsed> timeTestFlow = Flow
+                .<BenchRequest>create()
+                .mapConcat(benchRequest ->
+                        Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
+                )
+                .mapAsync(1, url -> {
+                    long start = System.nanoTime();
+                    return httpClient
+                            .prepareGet(url)
+                            .execute()
+                            .toCompletableFuture()
+                            .thenCompose(response ->
+                                    CompletableFuture.completedFuture(System.nanoTime() - start));
+                });
         Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0L, Long::sum);
         return timeTestFlow.toMat(sumFold, Keep.right());
     }
