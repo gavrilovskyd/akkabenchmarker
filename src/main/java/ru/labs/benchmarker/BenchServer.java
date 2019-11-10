@@ -74,7 +74,7 @@ public class BenchServer {
                 });
     }
 
-    private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
+    private Sink<BenchRequest, CompletionStage<Long>> benchSink() {
         Flow<BenchRequest, Long, NotUsed> timeTestFlow =
                 Flow
                         .<BenchRequest>create()
