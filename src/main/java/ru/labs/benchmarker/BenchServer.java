@@ -104,7 +104,7 @@ public class BenchServer {
         return timeTestFlow.toMat(sumFold, Keep.right());
     }
 
-    private HttpResponse httpErrorResponse(StatusCode code, String msg) {
+    private HttpResponse httpErrorResponse(StatusCode code, String msg) throws JsonProcessingException {
         return HttpResponse.create()
                 .withStatus(code)
                 .withEntity(
