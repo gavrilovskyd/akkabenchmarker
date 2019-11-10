@@ -54,7 +54,9 @@ public class BenchServer {
                                 .thenCompose(resp -> {
                                     BenchResult cacheResp = ((BenchResult) resp);
                                     if (cacheResp.getResponseTime() != -1) {
-                                        return CompletableFuture.completedFuture(cacheResp.getResponseTime());
+                                        return CompletableFuture.completedFuture(
+                                                new BenchResult(benchRequest.getURL(), cacheResp.getResponseTime())
+                                        );
                                     }
 
                                     return Source.from(Collections.singletonList(benchRequest))
@@ -65,7 +67,7 @@ public class BenchServer {
                                 })
                 )
                 .map(avgResponseTime -> {
-                    
+                    BenchResult benchResult = new BenchResult()
 
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
