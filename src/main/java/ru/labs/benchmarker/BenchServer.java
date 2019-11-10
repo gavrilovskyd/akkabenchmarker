@@ -51,7 +51,7 @@ public class BenchServer {
                                 }
 
                                 //TODO: add create flow logic
-                                return CompletableFuture.completedFuture(0L));
+                                return CompletableFuture.completedFuture(0L);
                             })
                 )
                 .map(benchResult -> {
