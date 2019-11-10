@@ -5,7 +5,6 @@ import akka.japi.pf.ReceiveBuilder;
 import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class CacheActor extends AbstractActor {
