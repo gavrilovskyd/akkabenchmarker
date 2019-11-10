@@ -104,7 +104,14 @@ public class BenchServer {
     }
 
     private HttpResponse httpErrorResponse(StatusCode code, String msg) {
-        
+        return HttpResponse.create()
+                .withStatus(code)
+                .withEntity(
+                        HttpEntities.create(
+                                ContentTypes.APPLICATION_JSON,
+                                jsonMapper.writeValueAsBytes(res)
+                        )
+                );
     }
 
     private HttpResponse httpBenchResponse(BenchResult res) throws JsonProcessingException {
