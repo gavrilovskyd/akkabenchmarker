@@ -89,6 +89,6 @@ public class BenchServer {
                                     .thenCompose(response ->
                                             CompletableFuture.completedFuture(System.nanoTime() - start));
                         });
-        Sink<Long, CompletionStage<Long>> 
+        Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0, )
     }
 }
