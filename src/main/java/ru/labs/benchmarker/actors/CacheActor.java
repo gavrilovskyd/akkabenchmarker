@@ -18,7 +18,7 @@ public class CacheActor extends AbstractActor {
         this.lruCache = new LinkedHashMap<String, Long>(cacheSize, 0.75f, true) {
             @Override
             protected boolean removeEldestEntry(java.util.Map.Entry<String, Long> eldest) {
-                return this.size() > cacheSize;
+                return this.size() > this.cacheSize;
             }
         };
     }
