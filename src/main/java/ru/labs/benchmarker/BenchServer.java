@@ -87,6 +87,6 @@ public class BenchServer {
                             .thenCompose(response ->
                                     CompletableFuture.completedFuture(System.nanoTime() - start));
                 })
-                
+
     }
 }
