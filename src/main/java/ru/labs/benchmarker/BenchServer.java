@@ -12,6 +12,8 @@ import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
 
+import java.util.concurrent.CompletionStage;
+
 public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
@@ -35,8 +37,7 @@ public class BenchServer {
                     return new BenchRequest(urlParam, countParam);
                 })
                 .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
-                    Patterns.ask(cache, benchRequest, TIMEOUT_MS)
-                            .
+                    CompletionStage<Object> stage = Patterns.ask(cache, benchRequest, TIMEOUT_MS);
                 });
     }
 }
