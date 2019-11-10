@@ -40,7 +40,7 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
+                .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
                     Patterns.ask(cache, benchRequest, TIMEOUT)
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
@@ -51,8 +51,6 @@ public class BenchServer {
                                 //TODO: add create flow logic
                                 return CompletableFuture.completedFuture(0L);
                             });
-
-
-                });
+                );
     }
 }
