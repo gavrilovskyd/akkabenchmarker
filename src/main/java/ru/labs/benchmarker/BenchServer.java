@@ -61,7 +61,7 @@ public class BenchServer {
                                             .toMat(benchSink(), Keep.right())
                                             .run(materializer)
                                             .thenCompose(summaryTime ->
-                                                    CompletableFuture.completedFuture(cacheResp.getResponseTime()););
+                                                    CompletableFuture.completedFuture(summaryTime / benchRequest.getCount()));
                                 })
                 )
                 .map(benchResult -> {
