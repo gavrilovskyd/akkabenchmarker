@@ -1,4 +1,4 @@
-package ru.labs.benchmarker;
+package ru.labs.benchmarker.actors;
 
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
