@@ -47,7 +47,7 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
-                                    return CompletableFuture.completedFuture(cacheResp);
+                                    return CompletableFuture.completedFuture(cacheResp.getResponseTime());
                                 }
 
                                 //TODO: add create flow logic
@@ -72,7 +72,7 @@ public class BenchServer {
         return Flow
                 .<BenchRequest>create()
                 .mapConcat(benchRequest -> {
-                    
+
                 })
     }
 }
