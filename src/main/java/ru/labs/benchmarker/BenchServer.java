@@ -57,11 +57,10 @@ public class BenchServer {
                                     if (cacheResp.getResponseTime() != -1) {
                                         return CompletableFuture.completedFuture(cacheResp.getResponseTime());
                                     }
-
-                                    Source.from(Collections.singletonList(benchRequest))
-                                            .toMat(benchSink())
-
-                                    return CompletableFuture.completedFuture(0L);
+                                    
+                                    return Source.from(Collections.singletonList(benchRequest))
+                                            .toMat(benchSink(), Keep.right())
+                                            .run(materializer);
                                 })
                 )
                 .map(benchResult -> {
