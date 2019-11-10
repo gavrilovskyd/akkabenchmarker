@@ -14,6 +14,7 @@ public class CacheActor extends AbstractActor {
         return ReceiveBuilder.create()
                 .match(BenchRequest.class, m -> {
                     Long result = innerStorage.getOrDefault(m.getURL(), -1);
+                    
                 })
                 .build();
     }
