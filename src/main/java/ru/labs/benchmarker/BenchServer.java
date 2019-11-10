@@ -69,7 +69,7 @@ public class BenchServer {
                     return httpBenchResponse(benchResult);
                 })
                 .recover(new PFBuilder()
-                        .match(NumberFormatException.class, )
+                        .match(NumberFormatException.class, ex -> "recover")
                         .build());
     }
 
