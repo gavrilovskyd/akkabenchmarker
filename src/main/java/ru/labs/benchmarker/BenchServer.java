@@ -28,6 +28,7 @@ public class BenchServer {
     private static final String URL_PARAMETER_NAME = "url";
     private static final String COUNT_PARAMETER_NAME = "count";
     private static final String COUNT_DEFAULT_VALUE = "10";
+    private static final Long TIME_FACTOR = 1000000L; // nano to ms
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
@@ -63,7 +64,7 @@ public class BenchServer {
                                             .thenCompose(summaryTime -> CompletableFuture.completedFuture(
                                                     new BenchResult(
                                                             benchRequest.getURL(),
-                                                            summaryTime / benchRequest.getCount())));
+                                                            summaryTime / benchRequest.getCount() / )));
                                 })
                 )
                 .map(benchResult -> {
