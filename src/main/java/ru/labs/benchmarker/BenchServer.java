@@ -59,6 +59,7 @@ public class BenchServer {
                                     }
 
                                     Source.from(Collections.singletonList(benchRequest))
+                                            .toMat(benchSink())
 
                                     return CompletableFuture.completedFuture(0L);
                                 })
