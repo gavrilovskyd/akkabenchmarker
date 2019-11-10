@@ -10,6 +10,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
+import akka.stream.javadsl.Source;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.tools.corba.se.idl.constExpr.Not;
 import org.asynchttpclient.AsyncHttpClient;
@@ -57,7 +58,9 @@ public class BenchServer {
                                         return CompletableFuture.completedFuture(cacheResp.getResponseTime());
                                     }
 
-                                    //TODO: add create flow logic
+                                    Source
+                                            .from(Collections.singletonList(benchRequest))
+
                                     return CompletableFuture.completedFuture(0L);
                                 })
                 )
