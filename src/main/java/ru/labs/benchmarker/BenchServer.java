@@ -79,8 +79,7 @@ public class BenchServer {
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
                 .mapAsync(1, url -> {
-                    httpClient.prepareGet(url).execute()
-                            .
+                    httpClient.prepareGet(url).execute();
                 })
     }
 }
