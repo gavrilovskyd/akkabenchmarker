@@ -44,7 +44,7 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
-                                    return CompletedFuture<HttpResponse>
+                                    return Compl
                                 }
                             });
 
