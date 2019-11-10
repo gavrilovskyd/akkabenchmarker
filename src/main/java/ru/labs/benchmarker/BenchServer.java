@@ -4,9 +4,7 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.http.javadsl.model.HttpRequest;
-import akka.http.javadsl.model.HttpResponse;
-import akka.http.javadsl.model.StatusCodes;
+import akka.http.javadsl.model.*;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -27,7 +25,7 @@ public class BenchServer {
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
-    
+
     private ActorRef cache;
 
     public BenchServer(ActorSystem system) {
@@ -62,7 +60,12 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
-
+                            .withEntity(
+                                    HttpEntities.create(
+                                            ContentTypes.APPLICATION_JSON,
+                                            jsonMapper.writeValueAsBytes(benchResult);
+                                    )
+                            )
                 });
     }
 }
