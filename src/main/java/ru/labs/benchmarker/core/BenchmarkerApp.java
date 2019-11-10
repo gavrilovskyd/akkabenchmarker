@@ -1,4 +1,4 @@
-package ru.labs.benchmarker;
+package ru.labs.benchmarker.core;
 
 import akka.NotUsed;
 import akka.actor.ActorSystem;
