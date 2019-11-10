@@ -67,8 +67,6 @@ public class BenchServer {
                                 })
                 )
                 .map(avgResponseTime -> {
-                    BenchResult benchResult = new BenchResult()
-
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
