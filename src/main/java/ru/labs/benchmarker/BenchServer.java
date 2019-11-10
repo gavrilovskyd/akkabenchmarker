@@ -19,6 +19,8 @@ public class BenchServer {
 
     public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
         return Flow.of(HttpRequest.class)
-                .map();
+                .map(req -> {
+                    
+                });
     }
 }
