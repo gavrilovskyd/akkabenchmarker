@@ -4,6 +4,7 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.http.javadsl.Http;
 import akka.http.javadsl.model.*;
 import akka.japi.pf.PFBuilder;
 import akka.pattern.Patterns;
@@ -68,7 +69,9 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
                 })
-                .recover(new PFBuilder<Throwable, HttpResponse>().build());
+                .recover(new PFBuilder<Throwable, HttpResponse>()
+                        .match(NumberFormatException.class, ex -> )
+                        .build());
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
@@ -98,6 +101,10 @@ public class BenchServer {
                 });
         Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0L, Long::sum);
         return timeTestFlow.toMat(sumFold, Keep.right());
+    }
+
+    private HttpResponse httpErrorResponse(StatusCode code, String msg) {
+        
     }
 
     private HttpResponse httpBenchResponse(BenchResult res) throws JsonProcessingException {
