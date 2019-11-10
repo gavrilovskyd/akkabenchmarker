@@ -61,10 +61,6 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .recover(new PFBuilder<Throwable, BenchRequest>()
-                        .match(NumberFormatException.class,
-                                ex ->  new BenchRequest(urlParam, countParam)
-                        .build())
                 .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
                         Patterns.ask(cache, benchRequest, TIMEOUT)
                                 .thenCompose(resp -> {
