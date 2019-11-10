@@ -38,7 +38,7 @@ public class BenchServer {
                     return new BenchRequest(urlParam, countParam);
                 })
                 .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
-                    CompletionStage<Object> stage = Patterns.ask(cache, benchRequest, timeout);
+                    CompletionStage<Object> stage = Patterns.ask(cache, benchRequest, TIMEOUT);
                     timeout.
 
                 });
