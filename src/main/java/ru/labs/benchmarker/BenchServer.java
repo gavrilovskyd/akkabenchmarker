@@ -11,7 +11,7 @@ import akka.stream.javadsl.Flow;
 import ru.labs.benchmarker.actors.CacheActor;
 
 public class BenchServer {
-    private static final URL_PARAMETER_NAME = "url";
+    private static final String URL_PARAMETER_NAME = "url";
 
 
     private ActorRef cache;
