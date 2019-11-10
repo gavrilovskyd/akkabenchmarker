@@ -80,7 +80,6 @@ public class BenchServer {
                 )
                 .mapAsync(1, url -> {
                     httpClient.prepareGet(url).execute()
-                            .
                 })
     }
 }
