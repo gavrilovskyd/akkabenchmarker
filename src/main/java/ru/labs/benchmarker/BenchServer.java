@@ -69,7 +69,8 @@ public class BenchServer {
                     return httpBenchResponse(benchResult);
                 })
                 .recover(new PFBuilder()
-                        .match(NumberFormatException.class, ));
+                        .match(NumberFormatException.class, )
+                        .build());
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
