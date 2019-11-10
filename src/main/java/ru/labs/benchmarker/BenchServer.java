@@ -64,7 +64,8 @@ public class BenchServer {
                                             .thenCompose(summaryTime -> CompletableFuture.completedFuture(
                                                     new BenchResult(
                                                             benchRequest.getURL(),
-                                                            summaryTime / benchRequest.getCount() / TIME_FACTOR)));
+                                                            summaryTime / benchRequest.getCount() / TIME_FACTOR
+                                                    )));
                                 })
                 )
                 .map(benchResult -> {
