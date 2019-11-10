@@ -67,5 +67,5 @@ public class BenchServer {
                 });
     }
 
-    private Sink<>
+    private Sink<BenchRequest, CompletionStage<BenchResult>>
 }
