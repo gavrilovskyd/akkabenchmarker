@@ -8,6 +8,7 @@ import akka.http.javadsl.model.*;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.tools.corba.se.idl.constExpr.Not;
@@ -90,6 +91,6 @@ public class BenchServer {
                                             CompletableFuture.completedFuture(System.nanoTime() - start));
                         });
         Sink<Long, CompletionStage<Long>> sumFold = Sink.fold(0L, Long::sum);
-        return 
+        return timeTestFlow.toMat(sumFold, Keep.right());
     }
 }
