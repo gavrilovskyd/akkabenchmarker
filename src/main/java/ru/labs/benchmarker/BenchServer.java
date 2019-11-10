@@ -29,7 +29,7 @@ public class BenchServer {
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
-    private final AsyncHttpClient httpClient = new Dsl.asyncHttpClient();
+    private final AsyncHttpClient httpClient = Dsl.asyncHttpClient();
 
     private ActorRef cache;
 
