@@ -8,9 +8,10 @@ public class PutToCacheMessage {
         this.url = url;
         this.responseTime = responseTime;
     }
-
-
+    
     public String getURL() {
         return url;
     }
+
+
 }
