@@ -58,8 +58,7 @@ public class BenchServer {
                                         return CompletableFuture.completedFuture(cacheResp.getResponseTime());
                                     }
 
-                                    Source
-                                            .from(Collections.singletonList(benchRequest))
+                                    Source.from(Collections.singletonList(benchRequest))
 
                                     return CompletableFuture.completedFuture(0L);
                                 })
