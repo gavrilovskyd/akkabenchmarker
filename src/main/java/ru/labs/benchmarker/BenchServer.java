@@ -70,14 +70,7 @@ public class BenchServer {
                 )
                 .map(benchResult -> {
                     cache.tell(benchResult, ActorRef.noSender());
-                    return HttpResponse.create()
-                            .withStatus(StatusCodes.OK)
-                            .withEntity(
-                                    HttpEntities.create(
-                                            ContentTypes.APPLICATION_JSON,
-                                            jsonMapper.writeValueAsBytes(benchResult)
-                                    )
-                            );
+                    return httpBenchResponse(benchResult);
                 });
     }
 
