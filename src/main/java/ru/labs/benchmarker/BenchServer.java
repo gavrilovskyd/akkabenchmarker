@@ -69,6 +69,6 @@ public class BenchServer {
     }
 
     private Sink<BenchRequest, CompletionStage<BenchResult>> benchSink() {
-        return 
+        return Flow
     }
 }
