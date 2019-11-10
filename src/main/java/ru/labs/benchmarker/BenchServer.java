@@ -9,6 +9,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import com.sun.xml.internal.ws.util.CompletedFuture;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
@@ -43,7 +44,7 @@ public class BenchServer {
                             .thenCompose(resp -> {
                                 BenchResult cacheResp = ((BenchResult) resp);
                                 if (cacheResp.getResponseTime() != -1) {
-                                    
+                                    return CompletedFuture<HttpResponse>
                                 }
                             });
 
