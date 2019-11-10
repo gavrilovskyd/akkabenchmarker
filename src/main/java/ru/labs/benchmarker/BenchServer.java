@@ -5,6 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.model.*;
+import akka.japi.pf.PFBuilder;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -67,7 +68,8 @@ public class BenchServer {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
                 })
-                .recover();
+                .recover(new PFBuilder()
+                        .match(NumberFormatException.class, ));
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
