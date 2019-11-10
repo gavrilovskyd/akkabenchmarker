@@ -55,6 +55,10 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
+                .recover(new PFBuilder<Throwable, HttpResponse>()
+                        .match(NumberFormatException.class,
+                                ex -> httpErrorResponse(StatusCodes.BAD_REQUEST, ex.getMessage()))
+                        .build())
                 .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
                         Patterns.ask(cache, benchRequest, TIMEOUT)
                                 .thenCompose(resp -> {
@@ -69,11 +73,7 @@ public class BenchServer {
                 .map(benchResult -> {
                     cache.tell(benchResult, ActorRef.noSender());
                     return httpBenchResponse(benchResult);
-                })
-                .recover(new PFBuilder<Throwable, HttpResponse>()
-                        .match(NumberFormatException.class,
-                                ex -> httpErrorResponse(StatusCodes.BAD_REQUEST, ex.getMessage()))
-                        .build());
+                });
     }
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
