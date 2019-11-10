@@ -1,4 +1,4 @@
 package ru.labs.benchmarker;
 
-public class CacheActor {
+public class CacheActor extends {
 }
