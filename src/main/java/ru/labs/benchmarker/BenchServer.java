@@ -80,7 +80,7 @@ public class BenchServer {
                 )
                 .mapAsync(1, url -> {
                     long start = System.nanoTime();
-                    httpClient
+                    return httpClient
                             .prepareGet(url)
                             .execute()
                             .toCompletableFuture()
