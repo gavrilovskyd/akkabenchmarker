@@ -33,7 +33,7 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .mapAsync(1, params -> { //TODO: check parallelism parameter
+                .mapAsync(1, benchRequest -> { //TODO: check parallelism parameter
                     Patterns.ask(cache, new BenchRequest())
                 });
     }
