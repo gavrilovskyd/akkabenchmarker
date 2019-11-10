@@ -10,6 +10,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Sink;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.asynchttpclient.Dsl;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
@@ -76,7 +77,7 @@ public class BenchServer {
                     Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
                 .mapAsync(1, url -> {
-                    
+                    Dsl.get(url)
                 })
     }
 }
