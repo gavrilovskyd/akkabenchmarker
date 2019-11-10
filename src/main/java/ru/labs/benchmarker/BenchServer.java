@@ -20,6 +20,7 @@ import org.asynchttpclient.Dsl;
 import ru.labs.benchmarker.actors.CacheActor;
 import ru.labs.benchmarker.messages.BenchRequest;
 import ru.labs.benchmarker.messages.BenchResult;
+import ru.labs.benchmarker.messages.TextResponse;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -110,7 +111,8 @@ public class BenchServer {
                         HttpEntities.create(
                                 ContentTypes.APPLICATION_JSON,
                                 jsonMapper.writeValueAsBytes(
-                                        new )
+                                        new TextResponse(msg)
+                                )
                         )
                 );
     }
