@@ -54,6 +54,7 @@ public class BenchServer {
                 )
                 .map(result -> {
                     BenchResult benchResult = ((BenchResult) result);
+                    cache.tell(benchResult, ActorRef.noSender());
                 });
     }
 }
