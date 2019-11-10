@@ -109,7 +109,8 @@ public class BenchServer {
                 .withEntity(
                         HttpEntities.create(
                                 ContentTypes.APPLICATION_JSON,
-                                jsonMapper.writeValueAsBytes(res)
+                                jsonMapper.writeValueAsBytes(
+                                        new )
                         )
                 );
     }
