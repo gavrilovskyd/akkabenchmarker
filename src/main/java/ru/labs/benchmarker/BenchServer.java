@@ -63,6 +63,7 @@ public class BenchServer {
                                 })
                 )
                 .map(benchResult -> {
+
                     cache.tell(benchResult, ActorRef.noSender());
                     return HttpResponse.create()
                             .withStatus(StatusCodes.OK)
