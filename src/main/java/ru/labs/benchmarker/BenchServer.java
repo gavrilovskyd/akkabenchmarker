@@ -17,7 +17,7 @@ public class BenchServer {
         this.cache = system.actorOf(Props.create(CacheActor.class), "cache");
     }
 
-    public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer, ) {
-
+    public Flow<HttpRequest, HttpResponse, NotUsed> flow(ActorSystem system, ActorMaterializer materializer) {
+        
     }
 }
