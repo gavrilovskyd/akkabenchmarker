@@ -31,7 +31,7 @@ public class BenchServer {
     private static final String COUNT_DEFAULT_VALUE = "10";
     private static final Long TIME_FACTOR = 1000000L; // nano to ms
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
-    private static final int CACHE_SIZE = 5;
+    private static final int CACHE_SIZE = 2;
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
     private final AsyncHttpClient httpClient = Dsl.asyncHttpClient();
