@@ -49,12 +49,17 @@ public class BenchServer {
         return Flow.of(HttpRequest.class)
                 .map(httpRequest -> {
                     String urlParam = httpRequest.getUri().query().getOrElse(URL_PARAMETER_NAME, "");
+                    int countParam = COUNT_DEFAULT_VALUE;
                     int countParam = Integer.parseInt(
                             httpRequest.getUri().query().getOrElse(COUNT_PARAMETER_NAME, COUNT_DEFAULT_VALUE)
                     );
 
                     return new BenchRequest(urlParam, countParam);
                 })
+                .recover(new PFBuilder<Throwable, BenchRequest>()
+                        .match(NumberFormatException.class,
+                                ex ->  new BenchRequest(urlParam, countParam)
+                        .build())
                 .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
                         Patterns.ask(cache, benchRequest, TIMEOUT)
                                 .thenCompose(resp -> {
