@@ -82,12 +82,12 @@ public class BenchServer {
                         )));
     }
 
-    private Sink<BenchRequest, CompletionStage<Long>> benchSink(int count) {
+    private Sink<BenchRequest, CompletionStage<Long>> benchSink(int reqCount) {
         Flow<BenchRequest, Long, NotUsed> timeTestFlow = Flow.<BenchRequest>create()
                 .mapConcat(benchRequest ->
                         Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
-                .mapAsync(count, url -> {
+                .mapAsync(reqCount, url -> {
                     long start = System.nanoTime();
                     return httpClient
                             .prepareGet(url)
