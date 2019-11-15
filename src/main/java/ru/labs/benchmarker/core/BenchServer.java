@@ -82,7 +82,7 @@ public class BenchServer {
                         )));
     }
 
-    private Sink<BenchRequest, CompletionStage<Long>> benchSink() {
+    private Sink<BenchRequest, CompletionStage<Long>> benchSink(int count) {
         Flow<BenchRequest, Long, NotUsed> timeTestFlow = Flow.<BenchRequest>create()
                 .mapConcat(benchRequest ->
                         Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
