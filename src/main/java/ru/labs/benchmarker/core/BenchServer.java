@@ -32,7 +32,7 @@ public class BenchServer {
     private static final String COUNT_DEFAULT_VALUE = "10";
     private static final Long TIME_FACTOR = 1000000L; // nano to ms
     private static final Duration TIMEOUT = Duration.ofMillis(5000);
-    private static final int CACHE_SIZE = 2;
+    private static final int CACHE_SIZE = 2; // Elements
     private static final int CORE_NUM = 4;
 
     private final ObjectMapper jsonMapper = new ObjectMapper();
