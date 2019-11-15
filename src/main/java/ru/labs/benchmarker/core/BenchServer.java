@@ -54,7 +54,7 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .mapAsync(CORE_NUM, benchRequest ->  //TODO: check parallelism parameter
+                .mapAsync(CORE_NUM, benchRequest ->
                         Patterns.ask(cache, benchRequest, TIMEOUT)
                                 .thenCompose(resp -> {
                                     BenchResult cacheResp = ((BenchResult) resp);
