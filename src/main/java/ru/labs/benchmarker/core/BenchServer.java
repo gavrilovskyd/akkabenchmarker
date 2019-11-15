@@ -87,7 +87,7 @@ public class BenchServer {
                 .mapConcat(benchRequest ->
                         Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
-                .mapAsync(CORE_NUM, url -> { // benchRequest.getCount()
+                .mapAsync(count, url -> { // benchRequest.getCount()
                     long start = System.nanoTime();
                     return httpClient
                             .prepareGet(url)
