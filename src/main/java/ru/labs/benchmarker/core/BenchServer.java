@@ -73,7 +73,7 @@ public class BenchServer {
 
     private CompletionStage<BenchResult> benchExecuteStage(BenchRequest benchRequest, ActorMaterializer materializer) {
         return Source.from(Collections.singletonList(benchRequest))
-                .toMat(benchSink(), Keep.right())
+                .toMat(benchSink(benchRequest.getCount()), Keep.right())
                 .run(materializer)
                 .thenCompose(summaryTime -> CompletableFuture.completedFuture(
                         new BenchResult(
