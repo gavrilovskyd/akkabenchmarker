@@ -54,7 +54,7 @@ public class BenchServer {
 
                     return new BenchRequest(urlParam, countParam);
                 })
-                .mapAsync(CORE_NUM, benchRequest ->  //TODO: check parallelism parameter
+                .mapAsync(1, benchRequest ->  //TODO: check parallelism parameter
                         Patterns.ask(cache, benchRequest, TIMEOUT)
                                 .thenCompose(resp -> {
                                     BenchResult cacheResp = ((BenchResult) resp);
@@ -87,7 +87,7 @@ public class BenchServer {
                 .mapConcat(benchRequest ->
                         Collections.nCopies(benchRequest.getCount(), benchRequest.getURL())
                 )
-                .mapAsync(CORE_NUM, url -> { // benchRequest.getCount() должно ускорить эту часть
+                .mapAsync(1, url -> { // benchRequest.getCount() должно ускорить эту часть
                     long start = System.nanoTime();
                     return httpClient
                             .prepareGet(url)
